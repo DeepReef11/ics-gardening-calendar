@@ -66,10 +66,9 @@ assemble-to-ics() {
 
     cat "$timezone" > "$output"
     local filelist=()
-       
+    #_getFilesInFolder "${selectedCalendarList[@]}"
     for e in "${selectedCalendarList[@]}"
     do
-        
         if [ -f "${sp}/$e" ]; then
             filelist=("${filelist[@]}" "${sp}/$e")
         elif [ -d "${sp}/$e" ]; then
@@ -88,8 +87,21 @@ assemble-to-ics() {
 }
 
 _getFilesInFolder() {
-#todo
+    #todo
+    
     echo "todo"
+    echo "$1"
+    for e in "$1"
+    do
+        echo "$e"
+        if [ -f "${sp}/$e" ]; then
+            filelist=("${filelist[@]}" "${sp}/$e")
+        elif [ -d "${sp}/$e" ]; then
+            _getFilesInFolder $(ls -d "${sp}/${e%/}/"*)
+            #filelist=("${filelist[@]}" $(ls -d "${sp}/${e%/}/"*))
+        fi
+    done
+    
 }    
 
     
