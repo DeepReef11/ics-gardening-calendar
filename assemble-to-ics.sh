@@ -72,10 +72,12 @@ assemble-to-ics() {
         if [ -f "${sp}/$e" ]; then
             filelist=("${filelist[@]}" "${sp}/$e")
         elif [ -d "${sp}/$e" ]; then
-            filelist=("${filelist[@]}" $(ls -d "${sp}/${e%/}/"*))
+            _getFilesInFolder "${sp}/$e"          
+            # filelist=("${filelist[@]}" $(ls -d "${sp}/${e%/}/"*))
         fi
     done
     if [ "$verbose" ]; then
+        echo "File list:"
         echo "${filelist[*]}"
     fi
     for file in "${filelist[@]}"
@@ -91,13 +93,20 @@ _getFilesInFolder() {
     
     echo "todo"
     echo "$1"
-    for e in "$1"
+    folder="$1"
+    foldercontent=$(ls -d "$folder/"*)
+    echo "$folder"
+    echo "$foldercontent"
+    #for e in $foldercontent
+    echo "$foldercontent" | while read e ;
     do
-        echo "$e"
-        if [ -f "${sp}/$e" ]; then
-            filelist=("${filelist[@]}" "${sp}/$e")
-        elif [ -d "${sp}/$e" ]; then
-            _getFilesInFolder $(ls -d "${sp}/${e%/}/"*)
+        echo "Ele: $e"
+        if [ -f "$e" ]; then
+            echo "added $e"
+            filelist=("${filelist[@]}" "$e")
+        elif [ -d "$e" ]; then
+            echo "folder $e"
+            _getFilesInFolder $(ls -d "${e}")
             #filelist=("${filelist[@]}" $(ls -d "${sp}/${e%/}/"*))
         fi
     done
