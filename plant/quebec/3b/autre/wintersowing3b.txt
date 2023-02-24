@@ -20,7 +20,6 @@ TRANSP:TRANSPARENT
 SUMMARY:Winter sowing (voir description)
 DESCRIPTION:Semer dans des plateaux de terreau troués couverts\, arroser e
  t mettre à l'extérieur.\n\nRadis\nTournesol (rapide)\nPersil\nÉchinacé
- e\nChou/rave/kale/broccoli\nLaitue\n\n
+ e\nChou/rave/kale/broccoli\nLaitue\n\n *À EXPERIMENTER* Certaines pourraient être semé en avril.
 RRULE:FREQ=YEARLY;BYMONTH=3
 END:VEVENT
-END:VCALENDAR
